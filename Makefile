@@ -10,7 +10,7 @@ setup:
 	@$(PYTHON) -m pip install -r requirements.txt >/dev/null
 
 respira/bin/activate: requirements.txt
-	python3 -m respira respira
+	python3 -m venv respira
 	./respira/bin/pip install -r requirements.txt
 
 clean:
