@@ -1,5 +1,6 @@
 # EDA Classifier Repo
-EDA Classifier to come
+EDA Classifier UNDER CONSTRUCTION - Not representative yet
+
 
 ## Use
 
