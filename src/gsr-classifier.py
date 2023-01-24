@@ -1,25 +1,15 @@
 from cvxEDA import cvxEDA
-import argparse
-
-# TODO: Implement the argument parsing to allow
-# Easy command line usage
-class Parser:
-    pass
 
 # This class implements a method to input data into the cvx solver
 # It can support simple list analysis (list of datapoints)
 # And windowing with a default window size of 256. This seems to make the analysis
 # Run quite quickly, and will hopefully allow near real time solving
 class CVX:
-    def __init__(self, f_s: int, i_f=None, window=256):
+    def __init__(self, f_s: int=256):
         """ CVX will take a series and compute the convex optimization.
             Parameters:
-            f_s     - sampling rate of data
-            i_f     - an optional live data stream to analyze 
-            window  - an optional window width to perform analysis on"""
+            f_s     - sampling rate of data"""
         self.f_s = f_s
-        self.i_f = i_f
-        self.window=window
 
     def CVX_list(self, y:list, use_window=False, f_s=None, window=None):
         """ Computes the CVX analysis on a list with the setup samplerate
@@ -64,9 +54,12 @@ class CVX:
 
         return cvx_data
     
-    # TODO: Implement this when we have more details on firmware and method
-    def CVX_watchFile(self):
-        """Watches a live datastream and analyzes in windows"""
+    # Utilize the information from CVX_List to
+    # Create a prediciton
+    def CVX_predict(self, data):
+        phasic, _, tonic, _, _, _, _ = self.CVX_list(data)
+
+
         pass
 
     
