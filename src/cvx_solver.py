@@ -58,9 +58,15 @@ class CVX:
     # Create a prediciton
     def CVX_predict(self, data):
         phasic, _, tonic, _, _, _, _ = self.CVX_list(data)
+        
+        # TODO: Utilize the gradient of the tonic component
+        #       To get a better view of what is occuring - is tonic dropping or rising
+        # TODO: Utilize gradient of phasic, is phasic activity increasing
+        #       or decreasing?
+        phasic_av = sum(phasic) / len(phasic)
+        tonic_av = sum(tonic) / len(tonic)
 
-
-        pass
+        return phasic_av, tonic_av
 
     
 if __name__ == "__main__":
