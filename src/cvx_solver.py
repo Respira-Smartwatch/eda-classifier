@@ -52,11 +52,11 @@ class CVX:
             r, p, t, l, d, e, obj = cvxEDA(s, 1/sample_rate)
             cvx_data.append([r,p,t,l,d,e,obj])
 
-        return cvx_data
+        return r,p,t,l,d,e,obj
     
     # Utilize the information from CVX_List to
     # Create a prediciton
-    def CVX_predict(self, data):
+    def predict(self, data):
         phasic, _, tonic, _, _, _, _ = self.CVX_list(data)
         
         # TODO: Utilize the gradient of the tonic component
