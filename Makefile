@@ -7,7 +7,10 @@ PYTHON = $(HOME)/Envs/respira/bin/python
 #
 ##########################################################################
 setup:
-	@$(PYTHON) -m pip install -r requirements.txt >/dev/null
+	sudo apt update
+	sudo apt install -y build-essential python-dev  libopenblas-dev libatlas-base-dev libblas-dev liblapack-dev libsuitesparse-dev python3-pip
+	pip3 install -r requirements.txt 
+
 
 respira/bin/activate: requirements.txt
 	python3 -m venv respira
