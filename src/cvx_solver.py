@@ -1,4 +1,5 @@
 from cvxEDA import cvxEDA
+from scipy import stats
 
 # This class implements a method to input data into the cvx solver
 # It can support simple list analysis (list of datapoints)
@@ -57,6 +58,7 @@ class CVX:
     # Utilize the information from CVX_List to
     # Create a prediciton
     def predict(self, data):
+        data = stats.zscore(data)
         phasic, _, tonic, _, _, _, _ = self.CVX_list(data)
         
         # TODO: Utilize the gradient of the tonic component
