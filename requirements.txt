@@ -10,3 +10,4 @@ Pillow
 pyparsing
 python-dateutil
 six
+scipy
