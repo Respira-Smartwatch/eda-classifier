@@ -58,7 +58,9 @@ class CVX:
     # Utilize the information from CVX_List to
     # Create a prediciton
     def predict(self, data):
+
         data = stats.zscore(data)
+
         phasic, _, tonic, _, _, _, _ = self.CVX_list(data)
         
         # TODO: Utilize the gradient of the tonic component
