@@ -36,10 +36,9 @@ import numpy as np
 import cvxopt as cv
 import cvxopt.solvers
 
-cv.solvers.options['show_progress'] = False
 
 def cvxEDA(y, delta, tau0=2., tau1=0.7, delta_knot=10., alpha=8e-4, gamma=1e-2,
-           solver=None, options={'reltol':1e-9}):
+        solver=None, options={'reltol':1e-9, 'show_progress':False}):
     """CVXEDA Convex optimization approach to electrodermal activity processing
 
     This function implements the cvxEDA algorithm described in "cvxEDA: a
@@ -68,6 +67,7 @@ def cvxEDA(y, delta, tau0=2., tau1=0.7, delta_knot=10., alpha=8e-4, gamma=1e-2,
        e: model residuals
        obj: value of objective function being minimized (eq 15 of paper)
     """
+
 
     n = len(y)
     y = cv.matrix(y)
@@ -138,4 +138,4 @@ def cvxEDA(y, delta, tau0=2., tau1=0.7, delta_knot=10., alpha=8e-4, gamma=1e-2,
     r = M * q
     e = y - r - t
 
-    return (np.array(a).ravel() for a in (r, p, t, l, d, e, obj))
+    return (np.array(a).ravel() for a in (r, p, t, l, d, e, obj, res['status']))

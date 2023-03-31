@@ -50,10 +50,10 @@ class CVX:
 
         cvx_data = []
         for s in data:
-            r, p, t, l, d, e, obj = cvxEDA(s, 1/sample_rate)
-            cvx_data.append([r,p,t,l,d,e,obj])
+            r, p, t, l, d, e, obj, stat = cvxEDA(s, 1/sample_rate)
+            cvx_data.append([r,p,t,l,d,e,obj, stat])
 
-        return r,p,t,l,d,e,obj
+        return r,p,t,l,d,e,obj,stat
     
     # Utilize the information from CVX_List to
     # Create a prediciton
@@ -61,16 +61,17 @@ class CVX:
 
         data = stats.zscore(data)
 
-        phasic, _, tonic, _, _, _, _ = self.CVX_list(data)
+        phasic, _, tonic, _, _, _, _, stat = self.CVX_list(data)
         
         # TODO: Utilize the gradient of the tonic component
         #       To get a better view of what is occuring - is tonic dropping or rising
         # TODO: Utilize gradient of phasic, is phasic activity increasing
         #       or decreasing?
+
         phasic_av = sum(phasic) / len(phasic)
         tonic_av = sum(tonic) / len(tonic)
 
-        return phasic_av, tonic_av
+        return phasic_av, tonic_av, stat
 
     
 if __name__ == "__main__":
